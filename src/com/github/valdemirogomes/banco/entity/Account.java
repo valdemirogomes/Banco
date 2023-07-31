@@ -60,7 +60,7 @@ public class Account {
         if (value<=0){
             throw new IllegalArgumentException("Cashout amount must be greater than 0");
         }
-        if (balance-value<0){
+        if (getBalanceAvailable() - value < 0){
             throw new IllegalStateException("Insufficient balance for withdrawal");
         }
         balance = balance-value;
@@ -68,6 +68,10 @@ public class Account {
 
     public void remove(double value, double rate){
         remove(value + rate);
+    }
+
+    public Double getBalanceAvailable(){
+        return getBalance();
     }
 
 
